@@ -1,0 +1,267 @@
+---
+title: "R for Play: When Data Meets Creativity"
+subtitle: "Exploring how R can make everyday life more fun and personal"
+author: "L — Data Analyst, University of Oxford"
+format: 
+  revealjs:
+    title-block-banner: true
+    slide-number: c/t
+    width: 1000
+    height: 800
+    max-scale: 4
+    footer: "[WeAreRLadies-Talk-GitHub Repository](https://github.com/LucyNjokiNjuki/WeAreRLadies-Talk)"
+    theme: [default, custom.scss]
+    transition: slide
+    transition-speed: slow
+    embed-resources: true
+    auto-agenda:
+      bullets: numbered
+    background-transition: fade
+    highlight-style: zenburn
+    touch: false
+    controls: true
+    title-slide-attributes: 
+      data-background-color: "#551A8B"
+      data-background-size: contain
+      data-background-opacity: "0.5"
+    echo: true
+logo: Images/r-ladies_logo.jpeg
+editor: visual
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(ggtext)
+```
+
+## Why This Talk
+
+::: {style="font-size: 60%;"}
+
+- We often think of R as something we use for work or research.
+
+- But what if R could also be fun, creative, and personal?
+
+- Today, I’ll share a few of my pet projects that made my everyday life more playful.
+
+> "Play is the highest form of research." – Albert Einstein
+
+```{r art}
+#| fig-width: 4
+#| fig-height: 5
+library(ggplot2)
+
+set.seed(42)
+n <- 500
+df <- data.frame(
+  x = sin(seq(0, 4*pi, length.out = n)) + rnorm(n, sd = 0.1),
+  y = cos(seq(0, 4*pi, length.out = n)) + rnorm(n, sd = 0.1),
+  color = seq_len(n)
+)
+
+ggplot(df, aes(x, y, color = color)) +
+  geom_path(size = 1.2, alpha = 0.8) +
+  scale_color_gradientn(colors = c("skyblue", "violet", "tomato")) +
+  theme_void() +
+  ggtitle("Spirals of R ✨") +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 16)
+  )
+```
+
+:::
+
+## Why This Talk
+
+::: {.columns}
+
+::: {.column width="60%" style="font-size: 60%;"}
+- We often think of R as something we use for work or research.
+- But what if R could also be fun, creative, and personal?
+- Today, I’ll share a few of my pet projects that made my everyday life more playful.
+
+> "Play is the highest form of research." – Albert Einstein
+
+:::
+
+::: {.column width="40%"}
+
+```{r art1}
+#| fig-width: 4
+#| fig-height: 5
+library(ggplot2)
+
+set.seed(42)
+n <- 500
+df <- data.frame(
+  x = sin(seq(0, 4*pi, length.out = n)) + rnorm(n, sd = 0.1),
+  y = cos(seq(0, 4*pi, length.out = n)) + rnorm(n, sd = 0.1),
+  color = seq_len(n)
+)
+
+ggplot(df, aes(x, y, color = color)) +
+  geom_path(size = 1.2, alpha = 0.8) +
+  scale_color_gradientn(colors = c("skyblue", "violet", "tomato")) +
+  theme_void() +
+  ggtitle("Spirals of R ✨") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+```
+
+:::
+
+:::
+
+## What ‘Play’ Means Here
+
+- "Play" = experimenting, trying things without deadlines.
+
+- Exploring what R can do outside of work or school.
+
+- Learning through curiosity and creativity.
+
+
+## Pet Project 1 – Tidytuesday Adventures
+
+- I use #TidyTuesday to explore new datasets * .
+
+- It's a great way to practice data wrangling, visualisation, and storytelling.
+
+Example project: 
+
+
+## Pet Project 2 – Personal Menu Generator 🍜
+
+- When I moved to a new city, I built a script to help me choose what to eat.
+
+- It randomly picked meals from a list, saving time and making it fun!
+
+- You can wrap it in a simple Shiny app or use it from the console!
+
+## Pet Project 3 – Gift Selector 🎁
+
+- I made a small data frame of gift ideas and built a random picker.
+
+- Great for birthdays, holidays, or when I wanted to treat myself!
+
+
+## Pet Project 4 – Designing Pride Flags with R 🏳🌈
+
+- I used R to design pride flag patterns for my home.
+
+- Packages: {ggplot2}, {grid}, {ggpattern}.
+
+Here’s a simple example:
+
+## Pet Project 5 – R on My Phone 📱
+
+- Installed R on my phone via Termux / Posit Cloud.
+
+- Handy for testing small code snippets anywhere!
+
+- Example use cases:
+
+  - Quick data summaries
+
+  - Random number generators
+
+  - Small visual experiments
+
+(Show a screenshot if you have one.)
+
+## Pet Project 6: Shiny App to Explore LGBTQ+ Movies in the UK 🎬🏳🌈
+
+- Aim: celebrate queer cinema and discover films people might have missed!
+
+- Built a Shiny app that lets users explore data on LGBTQ+ movies shown in UK cinemas or available on streaming.
+
+- Users can filter by:
+
+  - Year, genre, director, and representation type
+
+  - IMDb rating or audience score
+
+Visuals:
+
+- Interactive scatterplots (ggplotly or {plotly})
+
+- Word clouds of film themes or directors
+
+- Data sourced from public film datasets and APIs (e.g., IMDb or TMDb).
+
+## Curating and Sharing: My WeAreR-Ladies Week 💜
+
+- I had the chance to curate **@WeAreRLadies**, the rotating Twitter/X account that features R users worldwide.  
+
+- To prepare, I built an **R Markdown file** full of ideas and topics I wanted to share.  
+- Throughout the week I:
+  - Explored new `#TidyTuesday` datasets 🎨  
+  - Shared interesting packages — like **{tidylog}**, my wrangling co-pilot 🧭  
+  - Posted reflections on learning, creativity, and community  
+
+- This experience reminded me that *sharing what you learn is also a form of play* —  
+  it keeps curiosity alive and builds connection across the R world.
+
+```{r tidylog_demo, echo=TRUE, message=FALSE}
+library(dplyr)
+library(tidylog)  # My co-pilot!
+
+mtcars %>%
+  filter(mpg > 25) %>%
+  select(mpg, hp)
+```
+
+- Add a screenshot of one of your WeAreR-Ladies posts or tweets.  
+- Include the R-Ladies hex sticker or logo in a corner for a pop of colour.  
+
+## Why Play Matters
+
+- Playful R projects helped me:
+
+  - Learn new packages and tricks.
+
+  - Stay motivated and curious.
+
+  - See R as part of everyday life, not just work.
+
+- Fun projects build real skills.
+
+## What You Can Try Next
+
+- Join `#TidyTuesday` and pick a dataset that interests you.
+
+- Try making generative art with {ggplot2}.
+
+- Analyse your Spotify, Strava, or sleep data.
+
+- Build something personal: a random quote generator or meal picker.
+
+"If it brings you joy, it’s worth coding."
+
+
+## Closing Thoughts
+
+- R is not just for work — it’s for life, art, and play.
+
+- Be curious. Experiment. Share.
+
+- Thank you!
+
+Let’s connect:
+📧 [your.email@ox.ac.uk
+]
+🐙 GitHub: [your-username]
+🐦 Twitter: [your-handle]
+
+
+## Bonus Slide: Behind the Scenes 😂
+
+Fun bugs and “oops” moments.
+
+Show a funny error message or failed plot.
+
+Reminder: every playful project starts messy!

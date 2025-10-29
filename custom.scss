@@ -100,10 +100,12 @@ $presentation-h3-font-size: 1.0em;
     font-size: 0.9rem !important;
   }
 }
-/* Footer: ensure it doesn't overlay slide content */
+
 .reveal .footer,
 .reveal .reveal-footer {
-  position: relative;
-  z-index: 5;
-  margin-top: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 0.75rem;
+  text-align: right;
+  z-index: 30;
 }

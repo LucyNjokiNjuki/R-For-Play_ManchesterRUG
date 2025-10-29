@@ -1,15 +1,16 @@
 ---
 title: "R for Play: When Data Meets Creativity"
 subtitle: "Exploring how R can make everyday life more fun and personal"
-author: "L — Data Analyst, University of Oxford"
+author: "Njoki Njuki, Data Analyst, University of Oxford"
+date: "2025-11-13"
 format: 
   revealjs:
     title-block-banner: true
     slide-number: c/t
-    width: 1000
-    height: 800
-    max-scale: 4
-    footer: "[WeAreRLadies-Talk-GitHub Repository](https://github.com/LucyNjokiNjuki/WeAreRLadies-Talk)"
+    width: 1280
+    height: 720
+    max-scale: 1.5
+    footer: "[R For Play Repository](https://github.com/LucyNjokiNjuki/R-For-Play_ManchesterRUG)"
     theme: [default, custom.scss]
     transition: slide
     transition-speed: slow
@@ -20,12 +21,12 @@ format:
     highlight-style: zenburn
     touch: false
     controls: true
+    center: false
     title-slide-attributes: 
-      data-background-color: "#551A8B"
+      data-background-color: "#ffe5ec"
       data-background-size: contain
       data-background-opacity: "0.5"
     echo: true
-logo: Images/r-ladies_logo.jpeg
 editor: visual
 execute:
   echo: true
@@ -39,42 +40,6 @@ library(dplyr)
 library(ggtext)
 ```
 
-## Why This Talk
-
-::: {style="font-size: 60%;"}
-
-- We often think of R as something we use for work or research.
-
-- But what if R could also be fun, creative, and personal?
-
-- Today, I’ll share a few of my pet projects that made my everyday life more playful.
-
-> "Play is the highest form of research." – Albert Einstein
-
-```{r art}
-#| fig-width: 4
-#| fig-height: 5
-library(ggplot2)
-
-set.seed(42)
-n <- 500
-df <- data.frame(
-  x = sin(seq(0, 4*pi, length.out = n)) + rnorm(n, sd = 0.1),
-  y = cos(seq(0, 4*pi, length.out = n)) + rnorm(n, sd = 0.1),
-  color = seq_len(n)
-)
-
-ggplot(df, aes(x, y, color = color)) +
-  geom_path(size = 1.2, alpha = 0.8) +
-  scale_color_gradientn(colors = c("skyblue", "violet", "tomato")) +
-  theme_void() +
-  ggtitle("Spirals of R ✨") +
-  theme(
-    plot.title = element_text(hjust = 0.5, face = "bold", size = 16)
-  )
-```
-
-:::
 
 ## Why This Talk
 
@@ -91,10 +56,11 @@ ggplot(df, aes(x, y, color = color)) +
 
 ::: {.column width="40%"}
 
-```{r art1}
-#| fig-width: 4
-#| fig-height: 5
+```{r art1, echo = FALSE, eval=FALSE}
+#| fig-width: 8
+#| fig-height: 6
 library(ggplot2)
+library(gganimate)
 
 set.seed(42)
 n <- 500
@@ -104,19 +70,31 @@ df <- data.frame(
   color = seq_len(n)
 )
 
-ggplot(df, aes(x, y, color = color)) +
-  geom_path(size = 1.2, alpha = 0.8) +
-  scale_color_gradientn(colors = c("skyblue", "violet", "tomato")) +
+p <- ggplot(df, aes(x, y, color = color)) +
+  geom_path(size = 1.2, alpha = 0.9, lineend = "round") +
+  geom_point(data = df[sample(1:n, 40), ], aes(x, y), 
+             shape = 8, color = "gold", size = 3, alpha = 0.7) +
+  scale_color_gradientn(colors = c("#7209b7", "#b5179e", "#f72585")) +
   theme_void() +
   ggtitle("Spirals of R ✨") +
-  theme(plot.title = element_text(hjust = 0.5, face = "bold", size = 14))
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 24),
+    plot.background = element_rect(fill = "#ffb3c1", color = NA)
+  ) +
+  transition_reveal(along = color)
+
+animate(p, nframes = 120, fps = 25, width = 600, height = 600, renderer = gifski_renderer())
+
+# Save animation (optional)
+anim_save("spirals_of_R.gif")
 ```
 
+![](Images\spirals_of_R.gif){fig-align="center" width="80%"}
 :::
 
 :::
 
-## What ‘Play’ Means Here
+## What 'Play' Means Here
 
 - "Play" = experimenting, trying things without deadlines.
 
@@ -127,96 +105,277 @@ ggplot(df, aes(x, y, color = color)) +
 
 ## Pet Project 1 – Tidytuesday Adventures
 
-- I use #TidyTuesday to explore new datasets * .
+**Aim:** To improve my data visualisation skills and understand which plots fit the data.
+
+- I use [**#TidyTuesday**](https://github.com/LucyNjokiNjuki/Tidy_Tuesday) to explore new datasets 📊  
 
 - It's a great way to practice data wrangling, visualisation, and storytelling.
 
-Example project: 
+**What I Gained:** Confidence in communicating insights visually, and new connections in the `#TidyTuesday` community.
+
+---
+
+### Example Projects
+
+::: {layout-ncol=2}
+
+![](TidyTuesday_Plots\Wk27_xkcd_color_survey.png){fig-align="center" width="100%"}
+
+![](TidyTuesday_Plots\amazon_report.gif){fig-align="center" width="60%"}
+:::
+
+---
+
+### 💡 Inspiration from [Nicola Rennie](https://www.linkedin.com/in/nicola-rennie/)
+
+Nicola Rennie has a really practical way of approaching personal and learning projects in R:
+
+- Keep a small list of packages you'd like to try out 💻
+- Keep another list of plots or visual styles you'd like to learn 🎨
+- Get inspiration from what others create, even if it's not made in R!
+  - The [Datawrapper](https://www.datawrapper.de/) is a great source of ideas.
+  - [Visual Vocabulary - Designing with data](https://ft-interactive.github.io/visual-vocabulary/): There are many ways to visualise data, this guide helps you choose a chart type based on the key relationships in your story, offering a starting point for creating clear and meaningful visuals.
+
+- When you find a new dataset, check if it connects to something on your list, that's your next mini-project! 🚀
 
 
 ## Pet Project 2 – Personal Menu Generator 🍜
 
-- When I moved to a new city, I built a script to help me choose what to eat.
+::: {.columns}
 
+::: {.column width="40%" style="font-size: 60%;"}
+
+**Aim:** To make decision-making around meals easier and fun while settling into a new city/culture.
+
+- When I moved to the UK, I built a script to help me choose what to eat during the departmental dinner.
 - It randomly picked meals from a list, saving time and making it fun!
 
-- You can wrap it in a simple Shiny app or use it from the console!
+**What I Gained:** Practical use of randomness and reproducibility in everyday life.
+
+:::
+
+
+::: {.column width="60%" style="font-size: 50%;"}
+
+The description of the dataset of menu choices included:
+
+**starter**: 1) Pumpkin veloute, quince. hazelnut oil; 2) Chicken liver parfait, apple, brioche; 3) Devon brown crab crumpet, piccalilli, pink grapefruit, mint
+
+**main dishes**: 1) Roast turkey with all the trimmings; 2) Pollock, caulilower gratin, chicory, seaweed butter, Port, blackberry ; 3) Brased ox cheek, Boulongerer potato, carrot, bone marrow, red wine
+
+**dessert**: 1) Chocolate Fondant, salted caramel ice cream, boozy cherry; 2) Vanilla creme brulee, quince; 3) Stickey pear cake, toffee
+
+```{r}
+library(dplyr)
+library(tibble)
+
+# create a tibble with all the options
+dinner_df <- tibble(starter = c(1, 2, 3),
+                    main = c(2, 1, 3),
+                    dessert = c(3, 2, 1))
+set.seed(01) # to reproduce the same values for the sample
+(my_dinner <- dinner_df %>% 
+  dplyr::sample_n(1))
+```
+
+:::
+
+:::
 
 ## Pet Project 3 – Gift Selector 🎁
 
-- I made a small data frame of gift ideas and built a random picker.
+::: {.columns}
 
-- Great for birthdays, holidays, or when I wanted to treat myself!
+::: {.column width="50%" style="font-size: 50%;"}
 
+**Aim:** To build a small recommendation system for personal gifts, while learning how to add custom themes and fun fonts in Shiny apps.
 
-## Pet Project 4 – Designing Pride Flags with R 🏳🌈
+- Experimented with [bslib](https://rstudio.github.io/bslib/articles/theming/index.html) and [shinythemes](https://rstudio.github.io/shinythemes/) and fonts to customise the app’s look and feel.
 
-- I used R to design pride flag patterns for my home.
+- Learned that a little visual polish can make data apps feel more personal and joyful.
 
-- Packages: {ggplot2}, {grid}, {ggpattern}.
+- [🎁 Gift Selector for My Lovely Partner ❤️](https://lucy-njokinjuki.shinyapps.io/Xmas_Shopping/)
 
-Here’s a simple example:
+**What I Gained:** A better grasp of Shiny themes and styling, plus a playful way to combine functionality with design — and yes, a few great for my partner and I too!
+
+:::
+
+::: {.column width="50%" style="font-size: 80%;"}
+
+![](Images\gift_selector_shiny_app.png){fig-align="center" width="80%"}
+![](Images\gift_selector_shiny_app2.png){fig-align="center" width="80%"}
+:::
+
+:::
+
+## Pet Project 4 – Designing Pride Flags with R 🌈
+
+::: {.columns}
+
+::: {.column width="40%" style="font-size: 60%;"}
+
+**Aim:** To express creativity and identity using R as a digital art tool.
+
+![](Images\pride_flag.png){fig-align="center" width="80%"}
+:::
+
+::: {.column width="60%" style="font-size: 70%;"}
+
+- Designed pride flags for my home using `R` and `ggplot2`.
+
+- Experimented with colours, proportions, and geometric shapes.
+
+- Learned how art and code can beautifully overlap.
+
+**What I Gained**: I discovered that most of the ideas I imagine, R can actually create, which expanded my curiosity and confidence in exploring R programming. It also deepened my appreciation for how R blends data, design, and self-expression, and gave me a joyful way to decorate my home.
+
+[Designing Pride Flag GitHub Repo](https://github.com/LucyNjokiNjuki/Creating-Pride-Flag)
+
+:::
+:::
+
 
 ## Pet Project 5 – R on My Phone 📱
 
-- Installed R on my phone via Termux / Posit Cloud.
+::: {.columns}
 
+::: {.column width="60%" style="font-size: 70%;"}
+
+**Aim:** To make R accessible for on-the-go experiments.
+
+- Installed R on my phone via **Ubuntu** + **Termux**.
 - Handy for testing small code snippets anywhere!
 
 - Example use cases:
-
   - Quick data summaries
-
   - Random number generators
+  - Running simple models while watching web lectures for my MSc
+  
+**What I Gained:** I learned how to install and run R on my phone, which means I can quickly test commands and ideas even without having R installed locally. It gave me a real sense of freedom — knowing I can explore and experiment anywhere, anytime.
 
-  - Small visual experiments
+:::
 
-(Show a screenshot if you have one.)
+::: {.column width="40%" style="font-size: 20%;"}
 
-## Pet Project 6: Shiny App to Explore LGBTQ+ Movies in the UK 🎬🏳🌈
+![](Images\termux_screen_shot1.jpg){fig-align="center" width="40%"}
 
-- Aim: celebrate queer cinema and discover films people might have missed!
+:::
+
+:::
+
+---
+
+::: {.columns}
+
+::: {.column width="60%" style="font-size: 60%;"}
+
+### Step-by-step: Run R inside Ubuntu + Termux
+
+Do the steps below, having installed [**Termux** from Google Play Store](https://play.google.com/store/apps/details?id=com.termux&utm_source=emea_Med)
+
+1. Update termux packages: `pkg update && pkg upgrade -y`
+
+2. Install the `proot-distro` tool: `pkg install proot-distro -y`
+
+3. Install an Ubuntu `rootfs` (download + expand): `proot-distro install ubuntu`
+
+4. List installed distros (optional check): `proot-distro list`
+
+5. Enter the Ubuntu environment: `proot-distro login ubuntu`. Your prompt changes from something like: `u0_a123@localhost:~$` to `root@localhost:~#`
+
+6. Now you are "inside" Ubuntu: use apt to install things: `apt update && apt upgrade -y`
+
+7. Install R inside the Ubuntu container: `apt install r-base -y` 
+
+8. Test if R is installed: `R --version`
+
+9. Start R: `R`
+
+10. Quit R: `q()`
+
+References: [Installing RStudio on Termux](https://www.webindex.page/entry/installing-rstudio-on-termux); [Installing R on Android via Termux](https://conr.ca/post/installing-r-on-android-via-termux/); [Qn: Installing R on Android](https://stackoverflow.com/questions/36968411/installing-r-on-android)
+
+NOTE: This was a trial and error basis. I hope it works for you! :)
+
+:::
+
+::: {.column width="50%" style="font-size: 60%;"}
+
+For subsequent login:
+
+1. Enter the Ubuntu environment: `proot-distro login ubuntu`
+
+2. Start `R`
+
+![](Images\Login_Termux.jpg){fig-align="center" width="40%"}
+
+:::
+
+:::
+
+---
+
+## Pet Project 6: Shiny App to Explore LGBTQ+ Movies in the UK 🎬🌈
+
+::: {.columns}
+
+::: {.column width="60%" style="font-size: 70%;"}
+
+**Aim:** To celebrate queer cinema and explore data storytelling through interactivity. This project was a collaboration with my [rainbowR](https://rainbowr.org/) buddy [Tami Martins](https://www.linkedin.com/in/tamimart), and together we experimented with adding features like a **chatbot** to share more information about each movie and used the `{golem}` package to better organise and structure our Shiny app.
 
 - Built a Shiny app that lets users explore data on LGBTQ+ movies shown in UK cinemas or available on streaming.
-
 - Users can filter by:
-
   - Year, genre, director, and representation type
-
   - IMDb rating or audience score
+
+:::
+
+::: {.column width="40%" style="font-size: 60%;"}
 
 Visuals:
 
 - Interactive scatterplots (ggplotly or {plotly})
-
 - Word clouds of film themes or directors
+- Data sourced from [tidyrainbow](https://github.com/r-lgbtq/tidyrainbow/tree/main/data/LGBTQ-movie-database) within rainbowR community
 
-- Data sourced from public film datasets and APIs (e.g., IMDb or TMDb).
+**What I Gained:** I learned how to quickly integrate a chatbot into Shiny, gained some confidence using `{golem}` for scalable app design, and appreciated how collaboration can make creative coding even more fun and rewarding.
+
+![](Images\lgbtq_movies_shiny.png){fig-align="center" width="80%"}
+
+:::
+
+:::
+
 
 ## Curating and Sharing: My WeAreR-Ladies Week 💜
 
-- I had the chance to curate **@WeAreRLadies**, the rotating Twitter/X account that features R users worldwide.  
+::: {.columns}
 
+::: {.column width="60%" style="font-size: 50%;"}
+
+**Aim:** To engage with the global R community by curating the @WeAreRLadies account, sharing resources, ideas, and projects that encourage creativity and confidence in using R. I wanted to highlight how diverse the R world can be, and spark new connections through conversation.
+
+- I had the chance to curate **[WeAreRLadies](https://bsky.app/profile/weare.rladies.org)**, the rotating Bluesky account that features R users worldwide. 
 - To prepare, I built an **R Markdown file** full of ideas and topics I wanted to share.  
 - Throughout the week I:
   - Explored new `#TidyTuesday` datasets 🎨  
-  - Shared interesting packages — like **{tidylog}**, my wrangling co-pilot 🧭  
+  - Shared interesting packages like **{tidylog}**, my wrangling co-pilot 🧭  
   - Posted reflections on learning, creativity, and community  
 
-- This experience reminded me that *sharing what you learn is also a form of play* —  
-  it keeps curiosity alive and builds connection across the R world.
+- **What I Gained:** This experience reminded me that **sharing what you learn is also a form of play**; it keeps curiosity alive and builds genuine connections across the R world. I also gained new perspectives from others' journeys, discovered inspiring projects, and felt more connected to the creative, supportive spirit of the R community.
 
-```{r tidylog_demo, echo=TRUE, message=FALSE}
-library(dplyr)
-library(tidylog)  # My co-pilot!
+:::
 
-mtcars %>%
-  filter(mpg > 25) %>%
-  select(mpg, hp)
-```
+::: {.column width="40%" style="font-size: 60%;"}
 
-- Add a screenshot of one of your WeAreR-Ladies posts or tweets.  
-- Include the R-Ladies hex sticker or logo in a corner for a pop of colour.  
+![](Images\WeAreRLadies_Post2.png){fig-align="center" width="80%"}
+
+![](Images\WeAreRLadies_Post3.png){fig-align="center" width="80%"}
+
+:::
+
+:::
+
 
 ## Why Play Matters
 
@@ -234,34 +393,27 @@ mtcars %>%
 
 - Join `#TidyTuesday` and pick a dataset that interests you.
 
-- Try making generative art with {ggplot2}.
+- Try making generative art with `{ggplot2}`.
 
 - Analyse your Spotify, Strava, or sleep data.
 
-- Build something personal: a random quote generator or meal picker.
+- Build something personal such as a random quote generator or meal picker.
 
-"If it brings you joy, it’s worth coding."
+>"If it brings you joy, it’s worth coding."
 
 
 ## Closing Thoughts
 
-- R is not just for work — it’s for life, art, and play.
-
+- R is not just for work or studies; it's for life, art, and play.
+- Debugging: where curiosity turns frustration into discovery. 🪲
 - Be curious. Experiment. Share.
 
-- Thank you!
+Thank you!
 
 Let’s connect:
-📧 [your.email@ox.ac.uk
-]
-🐙 GitHub: [your-username]
-🐦 Twitter: [your-handle]
 
+📧 [lucynjokinjuki@gmail.com](mailto:lucynjokinjuki@gmail.com)
 
-## Bonus Slide: Behind the Scenes 😂
+🐙 GitHub: [Njoki Njuki](https://github.com/LucyNjokiNjuki)
 
-Fun bugs and “oops” moments.
-
-Show a funny error message or failed plot.
-
-Reminder: every playful project starts messy!
+🦋 Bluesky: [@njokinjuki.bsky.social](https://bsky.app/profile/njokinjuki.bsky.social)

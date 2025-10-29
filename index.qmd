@@ -319,7 +319,7 @@ For subsequent login:
 
 ::: {.columns}
 
-::: {.column width="60%" style="font-size: 70%;"}
+::: {.column width="60%" style="font-size: 60%;"}
 
 **Aim:** To celebrate queer cinema and explore data storytelling through interactivity. This project was a collaboration with my [rainbowR](https://rainbowr.org/) buddy [Tami Martins](https://www.linkedin.com/in/tamimart), and together we experimented with adding features like a **chatbot** to share more information about each movie and used the `{golem}` package to better organise and structure our Shiny app.
 
@@ -330,7 +330,7 @@ For subsequent login:
 
 :::
 
-::: {.column width="40%" style="font-size: 60%;"}
+::: {.column width="40%" style="font-size: 50%;"}
 
 Visuals:
 

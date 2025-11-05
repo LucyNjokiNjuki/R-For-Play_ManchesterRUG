@@ -55,7 +55,7 @@ library(ggtext)
 - But what if R could also be fun, creative, and personal?
 - Today, I’ll share a few of my pet projects that made my everyday life more playful.
 
-> "Play is the highest form of research." – Albert Einstein
+> "Play is the highest form of research." – Neville V. Scarfe
 
 :::
 

@@ -263,7 +263,7 @@ set.seed(01) # to reproduce the same values for the sample
   - Random number generators
   - Running simple models while watching web lectures for my MSc
   
-**What I Gained:** I learned how to install and run R on my phone, which means I can quickly test commands and ideas even without having R installed locally. It gave me a real sense of freedom, knowing I can explore and experiment anywhere, anytime.
+**What I Gained:** I learned how to install and run R on my phone, which means I can quickly test commands and ideas. It gave me a real sense of freedom, knowing I can explore and experiment anywhere, anytime.
 
 :::
 
@@ -307,7 +307,7 @@ Do the steps below, having installed [**Termux** from Google Play Store](https:/
 
 References: [Installing RStudio on Termux](https://www.webindex.page/entry/installing-rstudio-on-termux); [Installing R on Android via Termux](https://conr.ca/post/installing-r-on-android-via-termux/); [Qn: Installing R on Android](https://stackoverflow.com/questions/36968411/installing-r-on-android)
 
-NOTE: This was a trial and error basis. I hope it works for you! :)
+NOTE: This was a trial and error basis. I hope it works for you! 😊
 
 :::
 
@@ -317,7 +317,7 @@ For subsequent login:
 
 1. Enter the Ubuntu environment: `proot-distro login ubuntu`
 
-2. Start `R`
+2. Start R: `R`
 
 ![](Images\Login_Termux.jpg){fig-align="center" width="40%"}
 
@@ -337,8 +337,8 @@ For subsequent login:
 
 - Built a Shiny app that lets users explore data on LGBTQ+ movies shown in UK cinemas or available on streaming.
 - Users can filter by:
-  - Year, genre, director, and representation type
-  - IMDb rating or audience score
+  - Year, genre, representation type
+  - IMDb rating
 
 :::
 
@@ -346,8 +346,8 @@ For subsequent login:
 
 Visuals:
 
-- Interactive bar plots (`{ggplotly}` or `{plotly}`)
-- Word clouds of film themes or directors
+- Interactive bar plots (`{plotly}`)
+- Word clouds of film themes
 - Data sourced from [tidyrainbow](https://github.com/r-lgbtq/tidyrainbow/tree/main/data/LGBTQ-movie-database) within rainbowR community
 
 **What I Gained:** I learned how to quickly integrate a chatbot into Shiny, gained some confidence using `{golem}` for scalable app design, and appreciated how collaboration can make creative coding even more fun and rewarding.
@@ -399,7 +399,7 @@ Visuals:
 
   - Stay motivated and curious.
 
-  - See R as part of everyday life, not just work.
+  - See R as part of everyday life, not just work and studies.
 
 - Fun projects build real skills.
 

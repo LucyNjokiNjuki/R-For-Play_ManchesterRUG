@@ -17,6 +17,7 @@ format:
     theme: [default, custom.scss]
     transition: slide
     transition-speed: slow
+    incremental: false
     embed-resources: true
     auto-agenda:
       bullets: numbered
@@ -110,7 +111,7 @@ anim_save("spirals_of_R.gif")
 - Learning through curiosity and creativity.
 
 
-## Pet Project 1 – Tidytuesday Adventures
+## Pet Project 1 – TidyTuesday Adventures
 
 **Aim:** To improve my data visualisation skills and understand which plots fit the data.
 
@@ -124,11 +125,26 @@ anim_save("spirals_of_R.gif")
 
 ### Example Projects
 
-::: {layout-ncol=2}
+::: {.r-stack}
+
+::: {.fragment .fade-in}
+
+![](TidyTuesday_Plots\Wk8_2020_Food_Consumption_CO2_Emissions.png){fig-align="center" width="100%"}
+
+:::
+
+::: {.fragment .fade-in}
 
 ![](TidyTuesday_Plots\Wk27_xkcd_color_survey.png){fig-align="center" width="100%"}
 
-![](TidyTuesday_Plots\amazon_report.gif){fig-align="center" width="60%"}
+:::
+
+::: {.fragment .fade-in}
+
+![](TidyTuesday_Plots\amazon_report.gif){fig-align="center" width="80%"}
+
+:::
+
 :::
 
 ---
@@ -167,7 +183,7 @@ Nicola Rennie has a really practical way of approaching personal and learning pr
 :::
 
 
-::: {.column width="60%" style="font-size: 50%;"}
+::: {.column width="60%" style="font-size: 45%;"}
 
 The description of the dataset of menu choices included:
 
@@ -208,7 +224,7 @@ set.seed(01) # to reproduce the same values for the sample
 
 - [🎁 Gift Selector for My Lovely Partner ❤️](https://lucy-njokinjuki.shinyapps.io/Xmas_Shopping/)
 
-**What I Gained:** A better grasp of Shiny themes and styling, plus a playful way to combine functionality with design and yes, a few great for my partner and I too!
+**What I Gained:** A better grasp of Shiny themes and styling, plus a playful way to combine functionality with design and yes, a few great gifts for my partner and I too!
 
 :::
 

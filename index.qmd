@@ -394,7 +394,7 @@ Visuals:
 
 :::
 
-::: {.column width="40%" style="font-size: 30%;"}
+::: {.column width="40%" style="font-size: 20%;"}
 
 ![](Images\WeAreRLadies_Post2.png){fig-align="center" width="80%"}
 
